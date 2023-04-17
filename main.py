@@ -4,6 +4,7 @@ from player import Player
 from game_platform import Platform
 from block import Block
 from flag import Flag
+from typing import List, Tuple
 
 def handle_events():
     global running, pause, pause_start_time, pause_duration, goal_times, block_touch_times
@@ -96,48 +97,48 @@ def draw_game():
 
 pygame.init()
 
-screen_width = 800
-screen_height = 600
-screen = pygame.display.set_mode((screen_width, screen_height))
+screen_width: int = 800
+screen_height: int = 600
+screen: pygame.Surface = pygame.display.set_mode((screen_width, screen_height))
 
-player = Player(100, 100, screen_width, screen_height)
-platform = Platform(0, screen_height - 40, screen_width, 40)
+player: Player = Player(100, 100, screen_width, screen_height)
+platform: Platform = Platform(0, screen_height - 40, screen_width, 40)
 
-all_sprites = pygame.sprite.Group()
+all_sprites: pygame.sprite.Group = pygame.sprite.Group()
 all_sprites.add(player)
 all_sprites.add(platform)
 
-ground = Platform(0, screen_height - 40, screen_width, 40)
-platform_group = pygame.sprite.Group()
+ground: Platform = Platform(0, screen_height - 40, screen_width, 40)
+platform_group: pygame.sprite.Group = pygame.sprite.Group()
 platform_group.add(ground)
 all_sprites.add(ground)
 
-block1 = Block(200, screen_height - 180, 40, 40)
-block_group = pygame.sprite.Group()
+block1: Block = Block(200, screen_height - 180, 40, 40)
+block_group: pygame.sprite.Group = pygame.sprite.Group()
 block_group.add(block1)
 all_sprites.add(block1)
 
-flag = Flag(700, screen_height - 140, 35, 100)
-flag_group = pygame.sprite.Group()
+flag: Flag = Flag(700, screen_height - 140, 35, 100)
+flag_group: pygame.sprite.Group = pygame.sprite.Group()
 flag_group.add(flag)
 all_sprites.add(flag)
 
 pygame.font.init()
-font = pygame.font.Font(None, 36)
+font: pygame.font.Font = pygame.font.Font(None, 36)
 
-reset_text = font.render("R: Clear", True, (0, 0, 0))
-pause_text = font.render("P: Pause", True, (0, 0, 0))
-quit_text = font.render("Q: Quit", True, (0, 0, 0))
+reset_text: pygame.Surface = font.render("R: Clear", True, (0, 0, 0))
+pause_text: pygame.Surface = font.render("P: Pause", True, (0, 0, 0))
+quit_text: pygame.Surface = font.render("Q: Quit", True, (0, 0, 0))
 
-start_time = pygame.time.get_ticks()
-pause_start_time = 0
-pause_duration = 0
-goal_times = []
-block_touch_times = []
-last_block_touch_time = 0
+start_time: int = pygame.time.get_ticks()
+pause_start_time: int = 0
+pause_duration: int = 0
+goal_times: List[float] = []
+block_touch_times: List[float] = []
+last_block_touch_time: float = 0
 
-running = True
-pause = False
+running: bool = True
+pause: bool = False
 
 while running:
     handle_events()
