@@ -90,7 +90,6 @@ def draw_game():
 
     for i, block_touch_time in enumerate(block_touch_times, 1):
         touch_text = font.render(f"[{i}]: {block_touch_time:.2f}s", True, (0, 0, 0))
-        text_width = touch_text.get_rect().width  
         screen.blit(touch_text, (200, 10 + 40 * i))
 
     pygame.display.flip()
